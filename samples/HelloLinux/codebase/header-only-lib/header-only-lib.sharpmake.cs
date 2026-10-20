@@ -18,7 +18,9 @@ namespace HelloLinux
         {
             base.ConfigureAll(conf, target);
             conf.Output = Configuration.OutputType.Utility;
-            conf.IncludePaths.Add(SourceRootPath);
+            // Expose the headers as system include paths (-isystem) so warnings coming
+            // from this library don't show up when compiling the projects using it.
+            conf.IncludeSystemPaths.Add(SourceRootPath);
         }
     }
 }
